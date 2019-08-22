@@ -1,6 +1,6 @@
 (ns chortles.web
   (:require [ring.adapter.jetty :as jetty]
-            [cemerick.drawbridge :as drawbridge]
+            [drawbridge.core :as drawbridge]
             [ring.middleware.params :as params]
             [ring.middleware.keyword-params :as keyword-params]
             [ring.middleware.nested-params :as nested-params]
@@ -36,7 +36,7 @@
                    chortle magnitude (percentile magnitude))}))
 
 (def drawbridge-handler
-  (-> (cemerick.drawbridge/ring-handler)
+  (-> (drawbridge/ring-handler)
       (keyword-params/wrap-keyword-params)
       (nested-params/wrap-nested-params)
       (params/wrap-params)
